@@ -13,14 +13,17 @@ namespace Quickquiz.webAPI.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int user_id { get; set; }
 
-        [StringLength(50)]
-        public string faculty { get; set; }
+        [StringLength(256)]
+        public string img { get; set; }
 
-        [StringLength(50)]
-        public string branch { get; set; }
+        [StringLength(5)]
+        public string faculty_id { get; set; }
 
-        [StringLength(50)]
-        public string university { get; set; }
+        [StringLength(5)]
+        public string major_id { get; set; }
+
+        [StringLength(5)]
+        public string university_id { get; set; }
 
         public DateTime? time_dt { get; set; }
     }

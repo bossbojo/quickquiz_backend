@@ -39,71 +39,94 @@ namespace Quickquiz.webAPI.Controllers
         [Route("api/signin")]
         public IHttpActionResult Signin([FromBody] m_Signin value)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (_Anthen.Check_HaveUser(value.username))
+                if (ModelState.IsValid)
                 {
-                    if (_Anthen.Check_Verify(value.username))
+                    if (_Anthen.Check_HaveUser(value.username))
                     {
-                        var user = _Anthen.Check_Signin(value.username, value.password);
-                        if (user != null)
+                        if (_Anthen.Check_Verify(value.username))
                         {
-                            var authen = Authentication.SetAuthenticated(user);
-                            var res = Json(new
+                            var user = _Anthen.Check_Signin(value.username, value.password);
+                            if (user != null)
                             {
-                                Token = authen,
-                                Detail = new
+                                if (user.status.Equals("ac"))
                                 {
-                                    user_id = user.user_id,
-                                    username = user.username,
-                                    firstname = user.firstname,
-                                    lastname = user.lastname,
-                                    status = user.user_type_id
+                                    var authen = Authentication.SetAuthenticated(user);
+                                    var res = Json(new
+                                    {
+                                        Token = authen,
+                                        Detail = new
+                                        {
+                                            user_id = user.user_id,
+                                            username = user.username,
+                                            firstname = user.firstname,
+                                            lastname = user.lastname,
+                                            status = user.user_type_id
+                                        }
+                                    });
+                                    return res;
                                 }
-                            });
-                            return res;
+                                else
+                                {
+                                    if (user.status.Equals("bo")) return Json("Fail signin: this user blocked");
+                                    if (user.status.Equals("rm")) return Json("Fail signin: this user removed");
+                                    return Json("Fail signin: this user have status " + user.status);
+                                }
+                            }
+                            else
+                            {
+                                return Json("Fail signin: password incorrent");
+                            }
                         }
                         else
                         {
-                            return Json("Fail signin: password incorrent");
+                            return Json("Not Verify");
                         }
+
                     }
                     else
                     {
-                        return Json("Not Verify");
+                        return Json("Fail signin: username incorrent");
                     }
-
                 }
                 else
                 {
-                    return Json("Fail signin: username incorrent");
+                    return Json("Fail signin: model incorrent");
                 }
             }
-            else
-            {
-                return Json("Fail signin: model incorrent");
+            catch (Exception ex) {
+               return Json(ex.Message);
             }
+           
         }
         [HttpPost]
         [Route("api/verify")]
         public IHttpActionResult Verify([FromBody] m_VerifyUser value)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var verify = _User.R_VerifyUser(value);
-                if (verify != null)
+                if (ModelState.IsValid)
                 {
-                    return Json(verify);
+                    var verify = _User.R_VerifyUser(value);
+                    if (verify != null)
+                    {
+                        return Json(verify);
+                    }
+                    else
+                    {
+                        return Json("Fail verify");
+                    }
                 }
                 else
                 {
-                    return Json("Fail verify");
+                    return Json("Fail verify: model incorrent");
                 }
             }
-            else
-            {
-                return Json("Fail verify: model incorrent");
+            catch (Exception ex) {
+                return BadRequest(ex.Message);
             }
+           
         }
     }
 }

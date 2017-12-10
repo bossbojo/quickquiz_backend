@@ -6,14 +6,17 @@ namespace Quickquiz.webAPI.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("quickquiz.Status_code")]
-    public partial class Status_code
+    [Table("quickquiz.D_University")]
+    public partial class D_University
     {
         [Key]
-        [StringLength(2)]
-        public string status { get; set; }
+        [StringLength(5)]
+        public string Abbreviation { get; set; }
 
+        [Required]
         [StringLength(50)]
-        public string status_name { get; set; }
+        public string Fullwords { get; set; }
+
+        public DateTime add_dt { get; set; }
     }
 }

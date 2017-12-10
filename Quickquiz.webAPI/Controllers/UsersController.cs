@@ -14,14 +14,36 @@ namespace Quickquiz.webAPI.Controllers
         private R_Users _User = new R_Users();
         private R_Authentication _Anthen = new R_Authentication();
         [HttpGet]
-        [Route("api/get/user")]
+        [Route("api/get/user")] //get user ทั้งหมดของ admin
         public IHttpActionResult GetUser()
         {
-            //get user
+            //get ค่า user ทั้งหมด
             return Json(_User.R_GetUser());
         }
         [HttpGet]
-        [Route("api/get/user/remove")]
+        [Route("api/get/user/for/teacher")] //get user ทั้งหมดของ teacher
+        public IHttpActionResult GetUserForteacher(int id)
+        {
+            //get ค่า user ทั้งหมด
+            try {
+                var user = _User.R_GetUserById(id);
+                var res = _User.R_GetUserForTeacher(user.University, user.Faculty, user.Branch);
+                return Json(res);
+            }
+            catch (Exception ex) {
+                return Json(ex.Message);
+            }
+
+        }
+        [HttpGet]
+        [Route("api/get/user/byid")] //get user ทั้งหมดของ admin
+        public IHttpActionResult GetUserByid(int id)
+        {
+            //get ค่า user ทั้งหมด
+            return Json(_User.R_GetUserById(id));
+        }
+        [HttpGet]
+        [Route("api/get/user/remove")] 
         public IHttpActionResult GetUserRemove()
         {
             //get user

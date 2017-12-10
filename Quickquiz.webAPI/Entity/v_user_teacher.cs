@@ -6,8 +6,8 @@ namespace Quickquiz.webAPI.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("quickquiz.v_user")]
-    public partial class v_user
+    [Table("quickquiz.v_user_teacher")]
+    public partial class v_user_teacher
     {
         [Key]
         [Column(Order = 0)]

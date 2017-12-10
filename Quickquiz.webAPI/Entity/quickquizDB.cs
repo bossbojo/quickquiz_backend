@@ -13,6 +13,9 @@ namespace Quickquiz.webAPI.Entity
         }
 
         public virtual DbSet<Code_quiz> Code_quiz { get; set; }
+        public virtual DbSet<D_Faculty> D_Faculty { get; set; }
+        public virtual DbSet<D_Major> D_Major { get; set; }
+        public virtual DbSet<D_University> D_University { get; set; }
         public virtual DbSet<Log_user_join> Log_user_join { get; set; }
         public virtual DbSet<Status_code> Status_code { get; set; }
         public virtual DbSet<User_Detail> User_Detail { get; set; }
@@ -21,5 +24,6 @@ namespace Quickquiz.webAPI.Entity
         public virtual DbSet<Answers> Answers { get; set; }
         public virtual DbSet<Question> Question { get; set; }
         public virtual DbSet<v_user> v_user { get; set; }
+        public virtual DbSet<v_user_teacher> v_user_teacher { get; set; }
     }
 }

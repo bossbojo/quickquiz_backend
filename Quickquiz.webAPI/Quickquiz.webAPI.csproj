@@ -218,11 +218,15 @@
     <Compile Include="Authen\Authentication.cs" />
     <Compile Include="Authen\JWTAuthorizeAttribute.cs" />
     <Compile Include="Authen\Securities.cs" />
+    <Compile Include="Controllers\GetDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SigninController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Entity\Answers.cs" />
     <Compile Include="Entity\Code_quiz.cs" />
+    <Compile Include="Entity\D_Faculty.cs" />
+    <Compile Include="Entity\D_Major.cs" />
+    <Compile Include="Entity\D_University.cs" />
     <Compile Include="Entity\Log_user_join.cs" />
     <Compile Include="Entity\Question.cs" />
     <Compile Include="Entity\quickquizDB.cs" />
@@ -231,6 +235,7 @@
     <Compile Include="Entity\User_Detail.cs" />
     <Compile Include="Entity\User_type.cs" />
     <Compile Include="Entity\v_user.cs" />
+    <Compile Include="Entity\v_user_teacher.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,6 +246,7 @@
     <Compile Include="Models\m_VerifyUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\R_Authentication.cs" />
+    <Compile Include="Repositories\R_GetData.cs" />
     <Compile Include="Repositories\R_Users.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -251,6 +257,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Image\user.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

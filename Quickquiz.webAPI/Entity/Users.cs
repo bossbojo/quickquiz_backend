@@ -35,9 +35,5 @@ namespace Quickquiz.webAPI.Entity
         public int user_type_id { get; set; }
 
         public DateTime time_stamp_ctd { get; set; }
-
-        public virtual Status_code Status_code { get; set; }
-
-        public virtual User_type User_type { get; set; }
     }
 }

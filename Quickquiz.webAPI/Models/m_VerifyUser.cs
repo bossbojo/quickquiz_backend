@@ -13,5 +13,6 @@ namespace Quickquiz.webAPI.Models
         public string faculty { get; set; }
         public string branch { get; set; }
         public string university { get; set; }
+        public string img { get; set; }
     }
 }

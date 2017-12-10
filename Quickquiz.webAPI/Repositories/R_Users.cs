@@ -6,16 +6,35 @@ using Quickquiz.webAPI.Entity;
 using System.Text;
 using Quickquiz.webAPI.Models;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Quickquiz.webAPI.Repositories
 {
     public class R_Users
     {
         private quickquizDB db = new quickquizDB();
-        //get all
+        //get all user admin
         public IEnumerable<v_user> R_GetUser()
         {
-            return db.v_user.Where(c=> c.Status != "remove").ToList();
+            return db.v_user.Where(c => c.Status != "remove").OrderByDescending(c => c.user_id).ToList();
+        }
+        public IEnumerable<v_user_teacher> R_GetUserForTeacher(string university, string faculty, string major)
+        {
+            var res = db.Database.SqlQuery<v_user_teacher>("select * from [quickquiz].[v_user_teacher] where [University] = @university and [Faculty] = @faculty and [Branch] = @major",
+                new SqlParameter("@university", university),
+                new SqlParameter("@faculty", faculty),
+                new SqlParameter("@major", major)).OrderByDescending(c => c.user_id).ToList();
+            return res;
+        }
+        public v_user R_GetUserById(int id)
+        {
+            return db.v_user.Where(c => c.Status != "remove" && c.user_id == id).FirstOrDefault();
+        }
+        //get all user only student
+        public IEnumerable<v_user> R_GetUserForTeacher(string university, string major)
+        {
+            return db.v_user.Where(c => c.Status != "remove" && c.University.Equals(university) && c.Branch.Equals(major))
+                .OrderByDescending(c => c.user_id).ToList();
         }
         //get bin
         public IEnumerable<v_user> R_GetUserBin()
@@ -52,7 +71,7 @@ namespace Quickquiz.webAPI.Repositories
         {
             var delete = db.Users.FirstOrDefault(x => x.user_id == id);
             var res = db.Database.ExecuteSqlCommand("update [quickquiz].Users set [status] = 'rm' where [user_id] = @user_id",
-            new SqlParameter("@user_id",id));
+            new SqlParameter("@user_id", id));
             return res > 0 ? delete : null;
         }
         //Recovery user
@@ -76,7 +95,8 @@ namespace Quickquiz.webAPI.Repositories
                 }
                 return "Success recovery";
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return ex.Message;
             }
         }
@@ -107,14 +127,21 @@ namespace Quickquiz.webAPI.Repositories
             return res > 0 ? reset : null;
         }
         //verify
-        public Users R_VerifyUser(m_VerifyUser input) {
-            var res = db.Database.SqlQuery<Users>("EXEC [quickquiz].[s_Verify_user] @username,@firstname,@lastname,@faculty,@branch,@university",
+        public Users R_VerifyUser(m_VerifyUser input)
+        {
+            var myfilename = string.Format(@"{0}", Guid.NewGuid());
+            myfilename = myfilename + ".jpeg";
+            string filepath = HttpContext.Current.Server.MapPath("~/Image/" + myfilename);
+            var bytess = Convert.FromBase64String(input.img);
+            File.WriteAllBytes(filepath, bytess);
+            var res = db.Database.SqlQuery<Users>("EXEC [quickquiz].[s_Verify_user] @username,@firstname,@lastname,@faculty,@branch,@university,@img",
                 new SqlParameter("@username", input.username),
                 new SqlParameter("@firstname", input.firstname),
                 new SqlParameter("@lastname", input.lastname),
                 new SqlParameter("@faculty", input.faculty),
                 new SqlParameter("@branch", input.branch),
-                new SqlParameter("@university", input.university)
+                new SqlParameter("@university", input.university),
+                new SqlParameter("@img", myfilename.ToString())
              ).FirstOrDefault();
             return res;
         }
