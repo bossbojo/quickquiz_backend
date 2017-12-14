@@ -132,7 +132,8 @@ C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\bin
 C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\bin\Microsoft.AI.Web.xml
-C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\obj\Release\Quickquiz.webAPI.csprojResolveAssemblyReference.cache
 C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\obj\Release\Quickquiz.webAPI.csproj.CoreCompileInputs.cache
 C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\obj\Release\Quickquiz.webAPI.dll
 C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\obj\Release\Quickquiz.webAPI.pdb
+C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\bin\Quickquiz.webAPI.dll.CodeAnalysisLog.xml
+C:\Users\Paramat\Desktop\quickquizbackend\quickquiz_backend\Quickquiz.webAPI\bin\Quickquiz.webAPI.dll.lastcodeanalysissucceeded

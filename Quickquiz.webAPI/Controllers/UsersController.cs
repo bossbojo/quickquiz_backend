@@ -153,5 +153,42 @@ namespace Quickquiz.webAPI.Controllers
                 return Json("This field is required.");
             }
         }
+        [HttpPost]
+        [Route("api/add/user/by/teacher")]
+        public IHttpActionResult AddUserByTeacher(m_AddUser request)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (!_Anthen.Check_HaveUser(request.username))//check user have in database
+                    {
+                        var adduser = _User.R_AddUsersByteacher(request); //add user to databbase
+                        if (adduser != null)//if user add success
+                        {
+                            return Json(new { newUser = adduser });
+                        }
+                        else//if user add fail
+                        {
+                            return Json("Fail add user.");
+                        }
+                    }
+                    else
+                    {
+                        return Json("Have this user in database.");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message);
+                }
+
+            }
+            else
+            {
+                return Json("This field is required.");
+            }
+        }
     }
 }

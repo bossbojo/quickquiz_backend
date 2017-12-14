@@ -56,6 +56,17 @@ namespace Quickquiz.webAPI.Repositories
             ).FirstOrDefault();
             return res;
         }
+        //add user by teacher
+        public Users R_AddUsersByteacher(m_AddUser NewUser)
+        {
+            var res = db.Database.SqlQuery<Users>("EXEC [quickquiz].[s_AdduserByteacher] @username,@password,@user_type,@_user_id",
+            new SqlParameter("@username", NewUser.username),
+            new SqlParameter("@password", Convert.ToBase64String(Encoding.UTF8.GetBytes(NewUser.password))), 
+            new SqlParameter("@user_type", NewUser.user_type),
+            new SqlParameter("@_user_id", NewUser.user_id)
+            ).FirstOrDefault();
+            return res;
+        }
         //update user
         public Users R_UpdateUsers(int id, m_AddUser UpdateUser)
         {

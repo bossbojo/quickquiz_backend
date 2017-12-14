@@ -10,5 +10,6 @@ namespace Quickquiz.webAPI.Models
         public string username { get; set; }
         public string password { get; set; }
         public int user_type { get; set; }
+        public int user_id { get; set; }
     }
 }
