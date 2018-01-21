@@ -95,10 +95,11 @@ namespace Quickquiz.webAPI.Controllers
                     return Json("Fail signin: model incorrent");
                 }
             }
-            catch (Exception ex) {
-               return Json(ex.Message);
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
             }
-           
+
         }
         [HttpPost]
         [Route("api/verify")]
@@ -108,14 +109,30 @@ namespace Quickquiz.webAPI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var verify = _User.R_VerifyUser(value);
-                    if (verify != null)
+                    var user = _User.CheckAddUserByTeacher(value.username);
+                    if (user == null)
                     {
-                        return Json(verify);
+                        var verify = _User.R_VerifyUser(value);
+                        if (verify != null)
+                        {
+                            return Json(verify);
+                        }
+                        else
+                        {
+                            return Json("Fail verify");
+                        }
                     }
                     else
                     {
-                        return Json("Fail verify");
+                        var verify = _User.R_VerifyUserByTeacher(value);
+                        if (verify != null)
+                        {
+                            return Json(verify);
+                        }
+                        else
+                        {
+                            return Json("Fail verify");
+                        }
                     }
                 }
                 else
@@ -123,10 +140,11 @@ namespace Quickquiz.webAPI.Controllers
                     return Json("Fail verify: model incorrent");
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
-           
+
         }
     }
 }

@@ -111,6 +111,12 @@ namespace Quickquiz.webAPI.Repositories
                 return ex.Message;
             }
         }
+        //check user add by teacher
+        public User_Detail CheckAddUserByTeacher(string username){
+            var user = db.Users.Where(a => a.username.Equals(username)).FirstOrDefault();
+            var user_detail = db.User_Detail.Where(c => c.user_id == user.user_id).FirstOrDefault();
+            return user_detail;
+        }
         //block user
         public Users R_BlockUser(int id)
         {
@@ -152,6 +158,22 @@ namespace Quickquiz.webAPI.Repositories
                 new SqlParameter("@faculty", input.faculty),
                 new SqlParameter("@branch", input.branch),
                 new SqlParameter("@university", input.university),
+                new SqlParameter("@img", myfilename.ToString())
+             ).FirstOrDefault();
+            return res;
+        }
+        //verify user add by teacher
+        public Users R_VerifyUserByTeacher(m_VerifyUser input)
+        {
+            var myfilename = string.Format(@"{0}", Guid.NewGuid());
+            myfilename = myfilename + ".jpeg";
+            string filepath = HttpContext.Current.Server.MapPath("~/Image/" + myfilename);
+            var bytess = Convert.FromBase64String(input.img);
+            File.WriteAllBytes(filepath, bytess);
+            var res = db.Database.SqlQuery<Users>("EXEC [quickquiz].[s_Verify_userAddByTeacher] @username,@firstname,@lastname,@img",
+                new SqlParameter("@username", input.username),
+                new SqlParameter("@firstname", input.firstname),
+                new SqlParameter("@lastname", input.lastname),
                 new SqlParameter("@img", myfilename.ToString())
              ).FirstOrDefault();
             return res;

@@ -190,5 +190,18 @@ namespace Quickquiz.webAPI.Controllers
                 return Json("This field is required.");
             }
         }
+        [HttpGet]
+        [Route("api/check/userAddByTeacher")]
+        public IHttpActionResult getCheckUserAddByTeacher(string username) {
+            try
+            {
+                var user = _User.CheckAddUserByTeacher(username);
+                return Json(user);
+            }
+            catch (Exception ex) {
+                return Json(ex.Message);
+            }
+           
+        }
     }
 }
