@@ -6,18 +6,20 @@ namespace Quickquiz.webAPI.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("quickquiz.D_Faculty")]
-    public partial class D_Faculty
+    [Table("quickquiz.Faculty")]
+    public partial class Faculty
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public D_Faculty()
+        public Faculty()
         {
-            D_Major = new HashSet<D_Major>();
-            User_Detail = new HashSet<User_Detail>();
+            Major = new HashSet<Major>();
         }
 
-        [Key]
-        [StringLength(2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
+
+        [Required]
+        [StringLength(5)]
         public string Abbreviation { get; set; }
 
         [Required]
@@ -27,9 +29,6 @@ namespace Quickquiz.webAPI.Entity
         public DateTime add_dt { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<D_Major> D_Major { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_Detail> User_Detail { get; set; }
+        public virtual ICollection<Major> Major { get; set; }
     }
 }

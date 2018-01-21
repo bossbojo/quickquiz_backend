@@ -24,6 +24,11 @@ namespace Quickquiz.webAPI.Entity
 
         [Key]
         [Column(Order = 3)]
+        [StringLength(2)]
+        public string status { get; set; }
+
+        [Key]
+        [Column(Order = 4)]
         public DateTime time_stamp_ctd { get; set; }
     }
 }

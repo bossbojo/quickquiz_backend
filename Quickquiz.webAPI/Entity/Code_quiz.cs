@@ -22,6 +22,10 @@ namespace Quickquiz.webAPI.Entity
 
         public int count_quiz { get; set; }
 
+        [Required]
+        [StringLength(2)]
+        public string status { get; set; }
+
         public int user_id { get; set; }
 
         public DateTime time_stamp_ctd { get; set; }
