@@ -75,31 +75,29 @@ namespace Quickquiz.webAPI.Repositories
             return res;
         }
         //---Answers
-        public Answers CreateAnswers(int code_id, string img, string question, int user_id)
+        public Answers CreateAnswers(int q_id, string answer, bool correct)
         {
-            var res = db.Database.SqlQuery<Answers>("EXEC [quickquiz].[s_Answers_Create] @code_id,@img,@question,@user_id",
-                new SqlParameter("@code_id", code_id),
-                new SqlParameter("@img", img),
-                new SqlParameter("@question", question),
-                new SqlParameter("@user_id", user_id)
-            ).FirstOrDefault();
-            return res;
-        }
-        public Answers UpdateAnswers(int q_id, int code_id, string img, string question, int user_id)
-        {
-            var res = db.Database.SqlQuery<Answers>("EXEC [quickquiz].[s_Answers_Update] @q_id,@code_id,@img,@question,@user_id",
+            var res = db.Database.SqlQuery<Answers>("EXEC [quickquiz].[s_Answers_Create] @q_id,@answer,@correct",
                 new SqlParameter("@q_id", q_id),
-                new SqlParameter("@code_id", code_id),
-                new SqlParameter("@img", img),
-                new SqlParameter("@question", question),
-                new SqlParameter("@user_id", user_id)
+                new SqlParameter("@answer", answer),
+                new SqlParameter("@correct", correct)
             ).FirstOrDefault();
             return res;
         }
-        public Answers RemoveAnswers(int q_id)
+        public Answers UpdateAnswers(int a_id,int q_id, string answer, bool correct)
         {
-            var res = db.Database.SqlQuery<Answers>("EXEC [quickquiz].[s_Answers_Remove] @q_id",
-                new SqlParameter("@q_id", q_id)
+            var res = db.Database.SqlQuery<Answers>("EXEC [quickquiz].[s_Answers_Update] @a_id,@q_id,@code_id,@img,@question,@user_id",
+                new SqlParameter("@a_id", q_id),
+                new SqlParameter("@q_id", q_id),
+                new SqlParameter("@answer", answer),
+                new SqlParameter("@correct", correct)
+            ).FirstOrDefault();
+            return res;
+        }
+        public Answers RemoveAnswers(int a_id)
+        {
+            var res = db.Database.SqlQuery<Answers>("EXEC [quickquiz].[s_Answers_Remove] @a_id",
+                new SqlParameter("@a_id", a_id)
             ).FirstOrDefault();
             return res;
         }

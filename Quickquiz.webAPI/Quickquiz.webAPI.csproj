@@ -229,10 +229,13 @@
     <Compile Include="Entity\D_Faculty.cs" />
     <Compile Include="Entity\D_Major.cs" />
     <Compile Include="Entity\D_University.cs" />
+    <Compile Include="Entity\Faculty.cs" />
     <Compile Include="Entity\Log_user_join.cs" />
+    <Compile Include="Entity\Major.cs" />
     <Compile Include="Entity\Question.cs" />
     <Compile Include="Entity\quickquizDB.cs" />
     <Compile Include="Entity\Status_code.cs" />
+    <Compile Include="Entity\University.cs" />
     <Compile Include="Entity\Users.cs" />
     <Compile Include="Entity\User_Detail.cs" />
     <Compile Include="Entity\User_type.cs" />
@@ -243,7 +246,9 @@
     </Compile>
     <Compile Include="Hubs\quiz.cs" />
     <Compile Include="Models\m_AddUser.cs" />
+    <Compile Include="Models\m_CreateAnswers.cs" />
     <Compile Include="Models\m_CreateCode.cs" />
+    <Compile Include="Models\m_CreateQuestion.cs" />
     <Compile Include="Models\m_DecodeUsers.cs" />
     <Compile Include="Models\m_management.cs" />
     <Compile Include="Models\m_Signin.cs" />
