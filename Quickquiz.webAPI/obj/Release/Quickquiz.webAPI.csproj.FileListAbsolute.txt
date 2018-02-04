@@ -205,4 +205,5 @@ C:\Users\Paramat\Desktop\qq_backend\v1\quickquiz_backend\Quickquiz.webAPI\bin\Mi
 C:\Users\Paramat\Desktop\qq_backend\v1\quickquiz_backend\Quickquiz.webAPI\obj\Release\Quickquiz.webAPI.csproj.CoreCompileInputs.cache
 C:\Users\Paramat\Desktop\qq_backend\v1\quickquiz_backend\Quickquiz.webAPI\obj\Release\Quickquiz.webAPI.dll
 C:\Users\Paramat\Desktop\qq_backend\v1\quickquiz_backend\Quickquiz.webAPI\obj\Release\Quickquiz.webAPI.pdb
-C:\Users\Paramat\Desktop\qq_backend\v1\quickquiz_backend\Quickquiz.webAPI\obj\Release\Quickquiz.webAPI.csprojResolveAssemblyReference.cache
+C:\Users\Paramat\Desktop\qq_backend\v1\quickquiz_backend\Quickquiz.webAPI\bin\Quickquiz.webAPI.dll.CodeAnalysisLog.xml
+C:\Users\Paramat\Desktop\qq_backend\v1\quickquiz_backend\Quickquiz.webAPI\bin\Quickquiz.webAPI.dll.lastcodeanalysissucceeded

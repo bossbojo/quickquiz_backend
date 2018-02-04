@@ -126,7 +126,7 @@ namespace Quickquiz.webAPI.Controllers
         {
             try
             {
-                var res = _CreateQuiz.CreateAnswers(value.q_id,);
+                var res = _CreateQuiz.CreateAnswers(value.q_id,value.answer,value.correct);
                 if (res != null)
                 {
                     return Json("Success for Created.");
